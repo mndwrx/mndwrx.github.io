@@ -19,6 +19,10 @@
       --muted: #9a9a9a;
       --lime: #c8ff3d;
       --magenta: #ff3cb8;
+      --line: rgba(255,255,255,.08);
+      --space-1: 22px;
+      --space-2: 36px;
+      --space-3: 56px;
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
     html, body { min-height: 100%; background: var(--bg); color: var(--ink); }
@@ -36,32 +40,25 @@
       background: #000;
     }
 
-    /* Banner kept near native aspect so cover doesn't shred the art */
     .hero {
       position: relative;
       width: 100%;
-      /* 1760/576 ≈ 3.055 — a touch taller for presence, still not full-viewport crop hell */
       aspect-ratio: 2.7 / 1;
       min-height: clamp(220px, 38vw, 520px);
       max-height: 62vh;
       background: #000;
       overflow: hidden;
     }
-
     .hero img {
       width: 100%;
       height: 100%;
       object-fit: cover;
       object-position: center 45%;
       display: block;
-      /* Punch clarity without mud */
       filter: contrast(1.08) saturate(1.12) brightness(1.04);
-      /* Feather only the outer rim into page black — light touch */
       -webkit-mask-image: radial-gradient(120% 95% at 50% 45%, #000 52%, transparent 88%);
       mask-image: radial-gradient(120% 95% at 50% 45%, #000 52%, transparent 88%);
     }
-
-    /* Tiny bottom fade only — type lives under the art, not under a muddy veil */
     .hero::after {
       content: "";
       position: absolute;
@@ -75,10 +72,7 @@
       flex: 1;
       width: min(920px, calc(100% - 40px));
       margin: 0 auto;
-      padding: clamp(28px, 5vh, 56px) 0 clamp(48px, 8vh, 80px);
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
+      padding: clamp(28px, 5vh, 56px) 0 var(--space-3);
     }
 
     h1 {
@@ -104,11 +98,16 @@
       font-size: 1.05rem;
       color: var(--muted);
       max-width: 28ch;
-      margin-bottom: 28px;
+      margin-bottom: var(--space-2);
     }
 
-    .row { display: flex; flex-wrap: wrap; gap: 10px; }
-    a {
+    .row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    a.btn {
       font-family: "IBM Plex Mono", ui-monospace, monospace;
       font-size: 12px;
       letter-spacing: .06em;
@@ -117,36 +116,54 @@
       border: 1px solid rgba(255,255,255,.14);
       padding: 11px 16px;
       background: transparent;
-      transition: border-color .15s ease, background .15s ease;
+      transition: border-color .15s ease, background .15s ease, filter .15s ease;
+      display: inline-flex;
+      align-items: center;
     }
-    a.primary {
+    a.btn.primary {
       background: var(--lime);
       color: #000;
       border-color: var(--lime);
       font-weight: 500;
     }
-    a.primary:hover { filter: brightness(1.05); }
-    a.ghost:hover { border-color: rgba(255,255,255,.4); }
+    a.btn.primary:hover { filter: brightness(1.05); }
+    a.btn.ghost:hover { border-color: rgba(255,255,255,.4); }
 
-    .soon {
-      margin-top: 36px;
-      padding-top: 22px;
-      border-top: 1px solid rgba(255,255,255,.08);
-      max-width: 34ch;
+    /* Locked section system */
+    .blocks {
+      margin-top: var(--space-3);
+      display: flex;
+      flex-direction: column;
+      gap: 0;
     }
-    .soon-label {
+    .block {
+      padding: var(--space-2) 0;
+      border-top: 1px solid var(--line);
+    }
+    .block-label {
       font-family: "IBM Plex Mono", ui-monospace, monospace;
       font-size: 11px;
       letter-spacing: .2em;
       text-transform: uppercase;
       color: rgba(200,255,61,.7);
-      margin-bottom: 8px;
+      margin-bottom: 10px;
     }
-    .soon-line {
-      font-size: .95rem;
+    .block-title {
+      font-size: clamp(1.25rem, 2.6vw, 1.55rem);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      line-height: 1.15;
+      margin-bottom: 10px;
+      max-width: 22ch;
+    }
+    .block-body {
+      font-size: .98rem;
       color: var(--muted);
-      line-height: 1.45;
+      line-height: 1.5;
+      max-width: 42ch;
+      margin-bottom: var(--space-1);
     }
+    .block .row { margin-top: 4px; }
 
     @media (max-width: 700px) {
       .hero {
@@ -171,15 +188,36 @@
       <p class="hinge">It's just how it works…</p>
       <p class="lede">Two frequencies. One callsign.</p>
       <div class="row">
-        <a class="primary" href="https://x.com/MNDWRX">@MNDWRX</a>
-        <a class="ghost" href="https://github.com/mndwrx">GitHub</a>
+        <a class="btn primary" href="https://x.com/MNDWRX">@MNDWRX</a>
+        <a class="btn ghost" href="https://github.com/mndwrx">GitHub</a>
       </div>
 
-      <section class="soon" aria-label="Coming soon">
-        <p class="soon-label">Coming soon</p>
-        <p class="soon-line">More signal on the way. Stay on the frequency.</p>
-      </section>
+      <div class="blocks">
+        <section class="block" aria-label="Coming soon">
+          <p class="block-label">Coming soon</p>
+          <h2 class="block-title">More signal on the way</h2>
+          <p class="block-body">Stay on the frequency. What’s next ships when it earns the mark.</p>
+        </section>
 
+        <section class="block" aria-label="Signal">
+          <p class="block-label">Signal</p>
+          <h2 class="block-title">Where the feed lives</h2>
+          <p class="block-body">X is the live wire. GitHub is the bench. Everything else waits its turn.</p>
+          <div class="row">
+            <a class="btn primary" href="https://x.com/MNDWRX">Open X</a>
+            <a class="btn ghost" href="https://github.com/mndwrx">Open GitHub</a>
+          </div>
+        </section>
+
+        <section class="block" aria-label="Contact">
+          <p class="block-label">Contact</p>
+          <h2 class="block-title">Reach the callsign</h2>
+          <p class="block-body">No forms. No funnel. Hit the wire if you’ve got something real.</p>
+          <div class="row">
+            <a class="btn ghost" href="https://x.com/MNDWRX">Message @MNDWRX</a>
+          </div>
+        </section>
+      </div>
     </div>
   </div>
 </body>
