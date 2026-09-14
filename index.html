@@ -92,6 +92,14 @@
     h1 .mag { color: var(--magenta); }
     h1 .dim { color: rgba(255,255,255,.38); font-weight: 500; }
 
+    .hinge {
+      font-family: "IBM Plex Mono", ui-monospace, monospace;
+      font-size: 12px;
+      letter-spacing: .04em;
+      color: rgba(255,255,255,.34);
+      margin: -2px 0 16px;
+    }
+
     .lede {
       font-size: 1.05rem;
       color: var(--muted);
@@ -140,13 +148,6 @@
       line-height: 1.45;
     }
 
-    .foot {
-      margin-top: 36px;
-      font-family: "IBM Plex Mono", ui-monospace, monospace;
-      font-size: 11px;
-      color: rgba(255,255,255,.28);
-    }
-
     @media (max-width: 700px) {
       .hero {
         aspect-ratio: 1.7 / 1;
@@ -167,6 +168,7 @@
       <h1>
         <span class="lime">Logic</span><span class="dim"> + </span><span class="mag">Creativity</span><span class="dim"> = </span>MNDWRX
       </h1>
+      <p class="hinge">It's just how it works…</p>
       <p class="lede">Two frequencies. One callsign.</p>
       <div class="row">
         <a class="primary" href="https://x.com/MNDWRX">@MNDWRX</a>
@@ -178,7 +180,6 @@
         <p class="soon-line">More signal on the way. Stay on the frequency.</p>
       </section>
 
-      <p class="foot">It's just how it works…</p>
     </div>
   </div>
 </body>
