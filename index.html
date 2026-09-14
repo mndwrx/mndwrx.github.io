@@ -21,62 +21,64 @@
       --magenta: #ff3cb8;
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    html, body { height: 100%; background: var(--bg); color: var(--ink); }
+    html, body { min-height: 100%; background: var(--bg); color: var(--ink); }
     body {
       font-family: "Space Grotesk", system-ui, sans-serif;
       -webkit-font-smoothing: antialiased;
       overflow-x: hidden;
     }
 
-    /* One continuous field — image dies into black, no edge */
-    .field {
-      position: relative;
+    .page {
       min-height: 100vh;
       min-height: 100dvh;
       display: flex;
-      align-items: flex-end;
+      flex-direction: column;
       background: #000;
     }
 
-    .art {
-      position: absolute;
-      inset: 0;
-      pointer-events: none;
-      z-index: 0;
+    /* Banner kept near native aspect so cover doesn't shred the art */
+    .hero {
+      position: relative;
+      width: 100%;
+      /* 1760/576 ≈ 3.055 — a touch taller for presence, still not full-viewport crop hell */
+      aspect-ratio: 2.7 / 1;
+      min-height: clamp(220px, 38vw, 520px);
+      max-height: 62vh;
+      background: #000;
+      overflow: hidden;
     }
-    .art img {
+
+    .hero img {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      object-position: center 42%;
+      object-position: center 45%;
       display: block;
-      /* Kill any hard crop edge into pure black */
-      -webkit-mask-image:
-        linear-gradient(to right, transparent 0%, #000 8%, #000 92%, transparent 100%),
-        linear-gradient(to bottom, transparent 0%, #000 12%, #000 78%, transparent 100%);
-      mask-image:
-        linear-gradient(to right, transparent 0%, #000 8%, #000 92%, transparent 100%),
-        linear-gradient(to bottom, transparent 0%, #000 12%, #000 78%, transparent 100%);
-      -webkit-mask-composite: source-in;
-      mask-composite: intersect;
-      filter: saturate(1.05) contrast(1.04);
+      /* Punch clarity without mud */
+      filter: contrast(1.08) saturate(1.12) brightness(1.04);
+      /* Feather only the outer rim into page black — light touch */
+      -webkit-mask-image: radial-gradient(120% 95% at 50% 45%, #000 52%, transparent 88%);
+      mask-image: radial-gradient(120% 95% at 50% 45%, #000 52%, transparent 88%);
     }
-    /* Soft black wash so type stays readable without a box */
-    .art::after {
+
+    /* Tiny bottom fade only — type lives under the art, not under a muddy veil */
+    .hero::after {
       content: "";
       position: absolute;
-      inset: 0;
-      background:
-        radial-gradient(70% 55% at 50% 40%, transparent 0%, rgba(0,0,0,.18) 55%, rgba(0,0,0,.72) 100%),
-        linear-gradient(180deg, rgba(0,0,0,.15) 0%, transparent 28%, transparent 48%, rgba(0,0,0,.75) 78%, #000 100%);
+      left: 0; right: 0; bottom: 0;
+      height: 28%;
+      pointer-events: none;
+      background: linear-gradient(180deg, transparent 0%, #000 100%);
     }
 
     .copy {
-      position: relative;
-      z-index: 1;
+      flex: 1;
       width: min(920px, calc(100% - 40px));
       margin: 0 auto;
-      padding: 0 0 clamp(48px, 10vh, 96px);
+      padding: clamp(28px, 5vh, 56px) 0 clamp(48px, 8vh, 80px);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
     }
 
     .kicker {
@@ -84,7 +86,7 @@
       font-size: 11px;
       letter-spacing: .22em;
       text-transform: uppercase;
-      color: rgba(255,255,255,.45);
+      color: rgba(255,255,255,.42);
       margin-bottom: 16px;
     }
 
@@ -94,7 +96,6 @@
       font-weight: 700;
       letter-spacing: -0.035em;
       margin-bottom: 14px;
-      text-shadow: 0 2px 24px rgba(0,0,0,.65);
     }
     h1 .lime { color: var(--lime); }
     h1 .mag { color: var(--magenta); }
@@ -105,7 +106,6 @@
       color: var(--muted);
       max-width: 28ch;
       margin-bottom: 28px;
-      text-shadow: 0 1px 16px rgba(0,0,0,.7);
     }
 
     .row { display: flex; flex-wrap: wrap; gap: 10px; }
@@ -117,8 +117,7 @@
       color: var(--ink);
       border: 1px solid rgba(255,255,255,.14);
       padding: 11px 16px;
-      background: rgba(0,0,0,.35);
-      backdrop-filter: blur(6px);
+      background: transparent;
       transition: border-color .15s ease, background .15s ease;
     }
     a.primary {
@@ -138,16 +137,20 @@
     }
 
     @media (max-width: 700px) {
-      .art img { object-position: 62% center; }
-      .copy { padding-bottom: 40px; }
+      .hero {
+        aspect-ratio: 1.7 / 1;
+        max-height: none;
+        min-height: 200px;
+      }
+      .hero img { object-position: 58% 42%; }
     }
   </style>
 </head>
 <body>
-  <main class="field">
-    <div class="art" aria-hidden="true">
-      <img src="assets/banner.jpg" alt="" width="1760" height="576" />
-    </div>
+  <div class="page">
+    <section class="hero" aria-label="MNDWRX banner">
+      <img src="assets/banner.jpg" alt="MNDWRX — split brain and wordmark" width="2800" height="916" />
+    </section>
 
     <div class="copy">
       <p class="kicker">MNDWRX</p>
@@ -161,6 +164,6 @@
       </div>
       <p class="foot">It's just how it works…</p>
     </div>
-  </main>
+  </div>
 </body>
 </html>
