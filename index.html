@@ -7,7 +7,7 @@
   <meta name="description" content="MNDWRX — Logic + Creativity. Built the mark. One voice. Not a company." />
   <meta property="og:title" content="MNDWRX" />
   <meta property="og:description" content="Logic + Creativity = MNDWRX" />
-  <meta property="og:image" content="https://mndwrx.github.io/assets/mark-glitch.png" />
+  <meta property="og:image" content="https://mndwrx.github.io/assets/banner.jpg" />
   <meta name="theme-color" content="#000000" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -15,63 +15,68 @@
   <style>
     :root {
       --bg: #000;
-      --ink: #f2f2f2;
-      --muted: #7a7a7a;
+      --ink: #f3f3f3;
+      --muted: #9a9a9a;
       --lime: #c8ff3d;
       --magenta: #ff3cb8;
-      --gap: 2px;
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    html, body { height: 100%; }
+    html, body { height: 100%; background: var(--bg); color: var(--ink); }
     body {
-      min-height: 100%;
-      background: var(--bg);
-      color: var(--ink);
       font-family: "Space Grotesk", system-ui, sans-serif;
       -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
     }
 
-    .page {
-      min-height: 100%;
+    /* One continuous field — image dies into black, no edge */
+    .field {
+      position: relative;
+      min-height: 100vh;
+      min-height: 100dvh;
       display: flex;
-      flex-direction: column;
-    }
-
-    /* Full-width triptych — no cards, no glow, no radius */
-    .triptych {
-      display: grid;
-      grid-template-columns: 1.35fr 1fr 1fr;
-      gap: var(--gap);
-      width: 100%;
-      background: #111;
-      border-bottom: 1px solid #151515;
-    }
-    .panel {
+      align-items: flex-end;
       background: #000;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      min-height: clamp(260px, 48vh, 560px);
-      overflow: hidden;
     }
-    .panel img {
+
+    .art {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+    }
+    .art img {
       width: 100%;
       height: 100%;
-      object-fit: contain;
-      object-position: center;
+      object-fit: cover;
+      object-position: center 42%;
       display: block;
-      background: #000;
+      /* Kill any hard crop edge into pure black */
+      -webkit-mask-image:
+        linear-gradient(to right, transparent 0%, #000 8%, #000 92%, transparent 100%),
+        linear-gradient(to bottom, transparent 0%, #000 12%, #000 78%, transparent 100%);
+      mask-image:
+        linear-gradient(to right, transparent 0%, #000 8%, #000 92%, transparent 100%),
+        linear-gradient(to bottom, transparent 0%, #000 12%, #000 78%, transparent 100%);
+      -webkit-mask-composite: source-in;
+      mask-composite: intersect;
+      filter: saturate(1.05) contrast(1.04);
+    }
+    /* Soft black wash so type stays readable without a box */
+    .art::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(70% 55% at 50% 40%, transparent 0%, rgba(0,0,0,.18) 55%, rgba(0,0,0,.72) 100%),
+        linear-gradient(180deg, rgba(0,0,0,.15) 0%, transparent 28%, transparent 48%, rgba(0,0,0,.75) 78%, #000 100%);
     }
 
-    .body {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      padding: clamp(36px, 6vw, 72px) clamp(20px, 4vw, 48px) 48px;
-      max-width: 920px;
+    .copy {
+      position: relative;
+      z-index: 1;
+      width: min(920px, calc(100% - 40px));
       margin: 0 auto;
-      width: 100%;
+      padding: 0 0 clamp(48px, 10vh, 96px);
     }
 
     .kicker {
@@ -79,43 +84,42 @@
       font-size: 11px;
       letter-spacing: .22em;
       text-transform: uppercase;
-      color: var(--muted);
-      margin-bottom: 18px;
+      color: rgba(255,255,255,.45);
+      margin-bottom: 16px;
     }
 
     h1 {
-      font-size: clamp(2rem, 5.5vw, 3.4rem);
+      font-size: clamp(2.1rem, 6vw, 3.6rem);
       line-height: 1.02;
       font-weight: 700;
       letter-spacing: -0.035em;
       margin-bottom: 14px;
+      text-shadow: 0 2px 24px rgba(0,0,0,.65);
     }
     h1 .lime { color: var(--lime); }
     h1 .mag { color: var(--magenta); }
-    h1 .dim { color: #555; font-weight: 500; }
+    h1 .dim { color: rgba(255,255,255,.38); font-weight: 500; }
 
     .lede {
       font-size: 1.05rem;
       color: var(--muted);
       max-width: 28ch;
       margin-bottom: 28px;
+      text-shadow: 0 1px 16px rgba(0,0,0,.7);
     }
 
-    .row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      align-items: center;
-    }
+    .row { display: flex; flex-wrap: wrap; gap: 10px; }
     a {
       font-family: "IBM Plex Mono", ui-monospace, monospace;
       font-size: 12px;
       letter-spacing: .06em;
       text-decoration: none;
       color: var(--ink);
-      border: 1px solid #2a2a2a;
+      border: 1px solid rgba(255,255,255,.14);
       padding: 11px 16px;
-      transition: border-color .15s ease, color .15s ease, background .15s ease;
+      background: rgba(0,0,0,.35);
+      backdrop-filter: blur(6px);
+      transition: border-color .15s ease, background .15s ease;
     }
     a.primary {
       background: var(--lime);
@@ -123,45 +127,32 @@
       border-color: var(--lime);
       font-weight: 500;
     }
-    a.primary:hover { filter: brightness(1.04); }
-    a.ghost:hover { border-color: #666; }
+    a.primary:hover { filter: brightness(1.05); }
+    a.ghost:hover { border-color: rgba(255,255,255,.4); }
 
     .foot {
-      margin-top: auto;
-      padding-top: 40px;
+      margin-top: 36px;
       font-family: "IBM Plex Mono", ui-monospace, monospace;
       font-size: 11px;
-      color: #444;
+      color: rgba(255,255,255,.28);
     }
 
-    @media (max-width: 900px) {
-      .triptych { grid-template-columns: 1fr; }
-      .panel { min-height: clamp(220px, 38vh, 420px); }
+    @media (max-width: 700px) {
+      .art img { object-position: 62% center; }
+      .copy { padding-bottom: 40px; }
     }
   </style>
 </head>
 <body>
-  <div class="page">
-    <section class="triptych" aria-label="MNDWRX marks">
-      <div class="panel">
-        <img src="assets/mark-glitch.png" alt="MNDWRX wordmark" width="1600" height="900" />
-      </div>
-      <div class="panel">
-        <img src="assets/mark-brain.jpg" alt="MNDWRX split brain" width="1000" height="1000" />
-      </div>
-      <div class="panel">
-        <img src="assets/mark-3d.jpg" alt="MNDWRX dimensional mark" width="1000" height="1000" />
-      </div>
-    </section>
+  <main class="field">
+    <div class="art" aria-hidden="true">
+      <img src="assets/banner.jpg" alt="" width="1760" height="576" />
+    </div>
 
-    <div class="body">
+    <div class="copy">
       <p class="kicker">MNDWRX</p>
       <h1>
-        <span class="lime">Logic</span>
-        <span class="dim"> + </span>
-        <span class="mag">Creativity</span>
-        <span class="dim"> = </span>
-        MNDWRX
+        <span class="lime">Logic</span><span class="dim"> + </span><span class="mag">Creativity</span><span class="dim"> = </span>MNDWRX
       </h1>
       <p class="lede">Built the mark. One voice. Not a company.</p>
       <div class="row">
@@ -170,6 +161,6 @@
       </div>
       <p class="foot">It's just how it works…</p>
     </div>
-  </div>
+  </main>
 </body>
 </html>
