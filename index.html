@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>MNDWRX — Logic + Creativity</title>
+  <meta name="description" content="MNDWRX — Logic + Creativity. Vibecoder culture house. by-vibecoding · for-vibecoders." />
+  <meta property="og:title" content="MNDWRX" />
+  <meta property="og:description" content="Logic + Creativity = MNDWRX" />
+  <meta name="theme-color" content="#0a0a0a" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #0a0a0a;
+      --ink: #f2f2f2;
+      --muted: #9a9a9a;
+      --lime: #b8ff3c;
+      --magenta: #ff3cb8;
+      --line: #222;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { min-height: 100%; }
+    body {
+      font-family: "Space Grotesk", system-ui, sans-serif;
+      background:
+        radial-gradient(900px 500px at 12% -10%, rgba(184,255,60,.12), transparent 55%),
+        radial-gradient(800px 480px at 100% 0%, rgba(255,60,184,.12), transparent 50%),
+        var(--bg);
+      color: var(--ink);
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+    }
+    .wrap {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 72px 24px 64px;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .mark {
+      font-family: "IBM Plex Mono", ui-monospace, monospace;
+      font-size: .78rem;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 28px;
+    }
+    h1 {
+      font-size: clamp(2.4rem, 8vw, 4.2rem);
+      line-height: 1.02;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      margin-bottom: 18px;
+    }
+    h1 .eq { color: var(--ink); }
+    h1 .plus { color: var(--muted); font-weight: 500; }
+    h1 .lime { color: var(--lime); }
+    h1 .mag { color: var(--magenta); }
+    .lede {
+      font-size: 1.15rem;
+      color: var(--muted);
+      max-width: 38ch;
+      margin-bottom: 36px;
+    }
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 40px;
+      font-family: "IBM Plex Mono", ui-monospace, monospace;
+      font-size: .8rem;
+    }
+    .tags span {
+      border: 1px solid var(--line);
+      padding: 6px 10px;
+      border-radius: 999px;
+      color: var(--ink);
+      background: rgba(255,255,255,.02);
+    }
+    .actions { display: flex; flex-wrap: wrap; gap: 12px; }
+    a.btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: .95rem;
+      padding: 12px 18px;
+      border-radius: 10px;
+      border: 1px solid transparent;
+    }
+    a.primary { background: var(--lime); color: #0a0a0a; }
+    a.primary:hover { filter: brightness(1.05); }
+    a.ghost { border-color: var(--line); color: var(--ink); }
+    a.ghost:hover { border-color: #444; }
+    footer {
+      margin-top: 56px;
+      padding-top: 20px;
+      border-top: 1px solid var(--line);
+      font-family: "IBM Plex Mono", ui-monospace, monospace;
+      font-size: .75rem;
+      color: var(--muted);
+    }
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <p class="mark">MNDWRX</p>
+    <h1 class="eq">
+      <span class="lime">Logic</span>
+      <span class="plus">+</span>
+      <span class="mag">Creativity</span>
+      <span class="plus">=</span>
+      MNDWRX
+    </h1>
+    <p class="lede">Vibecoder culture house. Finely tuned chaos. by-vibecoding · for-vibecoders.</p>
+    <div class="tags">
+      <span>taste</span>
+      <span>ship</span>
+      <span>vibecode</span>
+      <span>craft</span>
+    </div>
+    <div class="actions">
+      <a class="btn primary" href="https://smolt-ten.vercel.app">Live focus: Smolt</a>
+      <a class="btn ghost" href="https://x.com/MNDWRX">X · @MNDWRX</a>
+      <a class="btn ghost" href="https://github.com/mndwrx">GitHub</a>
+    </div>
+    <footer>It's just how it works…</footer>
+  </main>
+</body>
+</html>
