@@ -750,7 +750,7 @@ html, body {
 .sales-limits-list li { color: var(--sales-muted); }
 
 /* ---- Pricing ---- */
-.sales-pricing-section { padding-bottom: 80px; }
+.sales-pricing-section { padding-bottom: 96px; }
 
 .sales-pricing-heading {
   display: flex;
@@ -852,7 +852,7 @@ html, body {
 
 .sales-price-standard {
   margin-top: 8px !important;
-  color: var(--sales-quiet) !important;
+  color: var(--sales-muted) !important;
   font-size: 12px !important;
 }
 
@@ -890,10 +890,14 @@ html, body {
   font-weight: 700;
 }
 
+.sales-price-limits-link {
+  margin: 0 0 14px;
+  font-size: 12px;
+}
+
 .sales-price-card-upgrade .sales-text-link {
-  justify-content: center;
-  width: 100%;
-  margin-top: 14px;
+  justify-content: flex-start;
+  width: auto;
 }
 
 /* ---- Contact ---- */
@@ -944,8 +948,9 @@ html, body {
   display: flex;
   align-items: center;
   gap: 24px;
-  min-height: 88px;
-  color: var(--sales-quiet);
+  min-height: 96px;
+  margin-top: 24px;
+  color: var(--sales-muted);
   border-top: 1px solid var(--sales-border);
   font-size: 12px;
 }
