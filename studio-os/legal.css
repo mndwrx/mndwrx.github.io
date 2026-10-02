@@ -1,0 +1,97 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap');
+
+html, body { margin: 0; min-width: 320px; }
+
+.sales-page {
+  --sales-ink: #f1f5f9;
+  --sales-muted: #94a3b8;
+  --sales-quiet: #64748b;
+  --sales-canvas: #07090d;
+  --sales-surface: #10151c;
+  --sales-border: rgba(148, 163, 184, 0.14);
+  --sales-accent: #22d3ee;
+  --sales-cta-bg: #22d3ee;
+  --sales-cta-text: #041016;
+  --sales-radius-sm: 8px;
+  --sales-font: 'IBM Plex Sans', ui-sans-serif, system-ui, sans-serif;
+  --sales-display: 'Space Grotesk', 'IBM Plex Sans', sans-serif;
+  color: var(--sales-ink);
+  background:
+    radial-gradient(900px 480px at 12% -10%, rgba(34, 211, 238, 0.08), transparent 55%),
+    var(--sales-canvas);
+  font-family: var(--sales-font);
+  line-height: 1.55;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+}
+
+.sales-page *, .sales-page *::before, .sales-page *::after { box-sizing: border-box; }
+.sales-page a:not(.sales-button):not(.sales-nav-cta):not(.sales-skip-link):not(.sales-text-link) { color: inherit; }
+
+.sales-container { width: min(1120px, calc(100% - 48px)); margin: 0 auto; }
+
+.sales-skip-link {
+  position: absolute; left: 18px; top: -60px; z-index: 5;
+  padding: 10px 14px; color: var(--sales-cta-text); background: var(--sales-cta-bg);
+  border-radius: var(--sales-radius-sm); font-size: 12px; font-weight: 700; text-decoration: none;
+}
+.sales-skip-link:focus { top: 18px; }
+
+.sales-nav {
+  display: flex; align-items: center; justify-content: space-between;
+  min-height: 76px; padding-top: 8px;
+}
+.sales-brand { display: inline-flex; align-items: center; gap: 10px; text-decoration: none; }
+.sales-brand-mark { display: block; width: 30px; height: 30px; border-radius: 7px; }
+.sales-brand strong {
+  display: block; font-family: var(--sales-display); font-size: 15px; font-weight: 700;
+  letter-spacing: -0.02em; color: var(--sales-ink);
+}
+.sales-brand small { display: block; font-size: 11px; color: var(--sales-muted); margin-top: -2px; }
+.sales-nav nav { display: flex; align-items: center; gap: 18px; font-size: 13px; }
+.sales-nav nav a { color: var(--sales-muted); text-decoration: none; }
+.sales-nav nav a:hover { color: var(--sales-ink); }
+.sales-nav nav a[aria-current="page"] { color: var(--sales-accent); }
+
+.legal-main { padding: 32px 0 64px; max-width: 720px; }
+.legal-main h1 {
+  font-family: var(--sales-display); font-size: clamp(28px, 4vw, 36px);
+  font-weight: 700; letter-spacing: -0.03em; margin: 0 0 8px; line-height: 1.15;
+}
+.legal-meta { color: var(--sales-muted); font-size: 13px; margin: 0 0 28px; }
+.legal-main h2 {
+  font-family: var(--sales-display); font-size: 18px; font-weight: 600;
+  margin: 28px 0 10px; letter-spacing: -0.02em;
+}
+.legal-main p, .legal-main li { color: #cbd5e1; font-size: 15px; }
+.legal-main ul { padding-left: 1.2em; margin: 8px 0 16px; }
+.legal-main li { margin: 4px 0; }
+.legal-main a { color: var(--sales-accent); text-decoration: underline; text-underline-offset: 2px; }
+.legal-note {
+  margin-top: 36px; padding: 14px 16px; border: 1px solid var(--sales-border);
+  border-radius: 10px; background: var(--sales-surface); color: var(--sales-quiet); font-size: 12px;
+}
+.legal-nav-links { display: flex; flex-wrap: wrap; gap: 12px 18px; margin: 24px 0 0; font-size: 13px; }
+.legal-nav-links a { color: var(--sales-muted); text-decoration: none; }
+.legal-nav-links a:hover { color: var(--sales-accent); }
+
+.sales-footer {
+  display: flex; align-items: center; gap: 24px; flex-wrap: wrap;
+  min-height: 96px; margin-top: 24px; color: var(--sales-muted);
+  border-top: 1px solid var(--sales-border); font-size: 12px;
+}
+.sales-footer .sales-brand { margin-right: auto; }
+.sales-footer .sales-brand-mark { width: 24px; height: 24px; }
+.sales-footer .sales-brand strong { font-size: 13px; }
+.sales-footer p { margin: 0; }
+.sales-footer-links { display: flex; flex-wrap: wrap; gap: 8px 14px; }
+.sales-footer-links a { color: var(--sales-muted); text-decoration: none; }
+.sales-footer-links a:hover { color: var(--sales-accent); }
+
+.sales-page :focus-visible { outline: 2px solid var(--sales-accent); outline-offset: 3px; }
+
+@media (max-width: 700px) {
+  .sales-nav nav > a:not([aria-current="page"]) { display: none; }
+  .sales-footer { display: grid; gap: 8px; padding: 24px 0; }
+  .sales-footer .sales-brand { margin-right: 0; }
+}
