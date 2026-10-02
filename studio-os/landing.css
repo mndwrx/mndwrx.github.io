@@ -181,24 +181,32 @@ body { min-width: 320px; }
 
 .sales-button:hover { transform: translateY(-1px); }
 
-/* Primary CTAs: beat .sales-page a specificity — white text on dark navy */
+/* Primary CTAs: light fill + navy text (never invisible on navy) */
 .sales-page a.sales-button-primary,
 .sales-page a.sales-button-primary:hover,
 .sales-page a.sales-button-primary:focus,
+.sales-page a.sales-button-primary:visited,
 .sales-button-primary {
-  color: #ffffff;
-  background: #183347;
-  background: var(--sales-ink);
-  box-shadow: 0 8px 18px rgba(24, 51, 71, 0.14);
+  color: #183347 !important;
+  background: #ffffff !important;
+  border: 2px solid #183347 !important;
+  box-shadow: 0 8px 18px rgba(24, 51, 71, 0.12);
   font-weight: 700;
-  -webkit-text-fill-color: #ffffff;
+  -webkit-text-fill-color: #183347 !important;
 }
 
 .sales-page a.sales-button-primary:hover,
 .sales-button-primary:hover {
-  box-shadow: 0 12px 24px rgba(24, 51, 71, 0.2);
-  color: #ffffff;
-  -webkit-text-fill-color: #ffffff;
+  background: #eef3ee !important;
+  color: #183347 !important;
+  -webkit-text-fill-color: #183347 !important;
+  box-shadow: 0 12px 24px rgba(24, 51, 71, 0.16);
+}
+
+.sales-page a.sales-button-primary span,
+.sales-button-primary span {
+  color: #183347 !important;
+  -webkit-text-fill-color: #183347 !important;
 }
 
 /* Secondary: dark text on light surface */
@@ -228,8 +236,11 @@ body { min-width: 320px; }
 }
 
 .sales-page a.sales-button-primary,
+.sales-button-primary {
+  color: #183347 !important;
+  -webkit-text-fill-color: #183347 !important;
+}
 .sales-page a.sales-nav-cta,
-.sales-button-primary,
 .sales-nav-cta {
   color: #ffffff !important;
   -webkit-text-fill-color: #ffffff !important;
