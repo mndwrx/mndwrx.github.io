@@ -1155,3 +1155,14 @@ html, body {
 .sales-footer-links a:hover {
   color: var(--sales-accent);
 }
+
+
+/* soft sales HOLD — disabled buy buttons */
+.sales-button:disabled,
+.sales-button[aria-disabled="true"],
+button.sales-button-primary:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+  transform: none;
+  pointer-events: none;
+}
