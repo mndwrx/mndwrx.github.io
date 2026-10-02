@@ -24,7 +24,10 @@ body { min-width: 320px; }
 .sales-page *::before,
 .sales-page *::after { box-sizing: border-box; }
 
-.sales-page a { color: inherit; }
+/* Do not inherit ink onto filled CTAs (navy-on-navy). */
+.sales-page a:not(.sales-button):not(.sales-nav-cta):not(.sales-skip-link) {
+  color: inherit;
+}
 
 .sales-container {
   width: min(1120px, calc(100% - 48px));
@@ -101,9 +104,12 @@ body { min-width: 320px; }
 
 .sales-nav nav a:hover { color: var(--sales-ink); }
 
-.sales-nav .sales-nav-cta {
+.sales-nav nav a.sales-nav-cta,
+.sales-nav nav a.sales-nav-cta:hover,
+.sales-nav nav a.sales-nav-cta:focus {
   padding: 10px 14px;
-  color: #fff;
+  color: #ffffff;
+  background: #183347;
   background: var(--sales-ink);
   border-radius: 8px;
 }
@@ -175,23 +181,41 @@ body { min-width: 320px; }
 
 .sales-button:hover { transform: translateY(-1px); }
 
+/* Primary CTAs: beat .sales-page a specificity — white text on dark navy */
+.sales-page a.sales-button-primary,
+.sales-page a.sales-button-primary:hover,
+.sales-page a.sales-button-primary:focus,
 .sales-button-primary {
-  color: #fff;
+  color: #ffffff;
+  background: #183347;
   background: var(--sales-ink);
   box-shadow: 0 8px 18px rgba(24, 51, 71, 0.14);
+  font-weight: 700;
+  -webkit-text-fill-color: #ffffff;
 }
 
+.sales-page a.sales-button-primary:hover,
 .sales-button-primary:hover {
   box-shadow: 0 12px 24px rgba(24, 51, 71, 0.2);
+  color: #ffffff;
+  -webkit-text-fill-color: #ffffff;
 }
 
+/* Secondary: dark text on light surface */
+.sales-page a.sales-button-secondary,
+.sales-page a.sales-button-secondary:hover,
+.sales-page a.sales-button-secondary:focus,
 .sales-button-secondary {
+  color: #183347;
   color: var(--sales-ink);
   background: var(--sales-surface);
   border-color: var(--sales-border);
+  -webkit-text-fill-color: currentColor;
 }
 
-/* CTA text visibility */
+/* CTA text visibility / contrast belt */
+.sales-page a.sales-button,
+.sales-page a.sales-nav-cta,
 .sales-button,
 .sales-nav-cta {
   opacity: 1;
@@ -200,15 +224,22 @@ body { min-width: 320px; }
   white-space: normal;
   font-size: 13px;
   line-height: 1.3;
+  font-weight: 700;
 }
 
+.sales-page a.sales-button-primary,
+.sales-page a.sales-nav-cta,
 .sales-button-primary,
 .sales-nav-cta {
-  color: #fff !important;
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
 }
 
+.sales-page a.sales-button-secondary,
 .sales-button-secondary {
+  color: #183347 !important;
   color: var(--sales-ink) !important;
+  -webkit-text-fill-color: currentColor !important;
 }
 
 .sales-action-note {
