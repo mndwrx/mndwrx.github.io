@@ -8,9 +8,10 @@
 
 html, body {
   margin: 0;
-  background: #07090d;
   min-width: 320px;
   overflow-x: hidden;
+  /* Canvas color comes from Desk theme tokens (styles.css).
+     Sales keeps its own floor via .sales-page background. */
 }
 
 .sales-page {
@@ -26,6 +27,8 @@ html, body {
   --sales-border-strong: rgba(148, 163, 184, 0.24);
   --sales-accent: #22d3ee;
   --sales-accent-soft: rgba(34, 211, 238, 0.12);
+  --sales-ease: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --sales-dur: 140ms;
   --sales-accent-border: rgba(34, 211, 238, 0.35);
   --sales-accent-glow: 0 0 28px rgba(34, 211, 238, 0.22);
   --sales-cta-bg: #22d3ee;
@@ -94,17 +97,13 @@ html, body {
 }
 
 .sales-brand-mark {
-  display: grid;
-  place-items: center;
+  display: block;
   width: 30px;
   height: 30px;
-  border-radius: 9px 9px 9px 3px;
-  color: var(--sales-cta-text);
-  background: var(--sales-accent);
-  box-shadow: var(--sales-accent-glow);
-  font-family: var(--sales-display);
-  font-size: 15px;
-  font-weight: 700;
+  border-radius: 8px;
+  object-fit: contain;
+  background: transparent;
+  box-shadow: none;
 }
 
 .sales-brand strong,
@@ -137,7 +136,7 @@ html, body {
   font-size: 13px;
   font-weight: 600;
   text-decoration: none;
-  transition: color 0.15s ease;
+  transition: color var(--sales-dur) var(--sales-ease);
 }
 
 .sales-nav nav a:hover { color: var(--sales-ink); }
@@ -225,7 +224,7 @@ html, body {
   font-size: 13px;
   font-weight: 700;
   text-decoration: none;
-  transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease, border-color 0.15s ease;
+  transition: transform var(--sales-dur) var(--sales-ease), box-shadow var(--sales-dur) var(--sales-ease), background var(--sales-dur) var(--sales-ease), border-color var(--sales-dur) var(--sales-ease);
   opacity: 1;
   visibility: visible;
   text-indent: 0;
@@ -367,16 +366,12 @@ html, body {
 }
 
 .sales-preview-logo {
-  display: grid;
-  place-items: center;
+  display: block;
   width: 23px;
   height: 23px;
-  border-radius: 7px 7px 7px 2px;
-  color: var(--sales-cta-text);
-  background: var(--sales-accent);
-  font-family: var(--sales-display);
-  font-size: 12px;
-  font-weight: 700;
+  border-radius: 6px;
+  object-fit: contain;
+  background: transparent;
 }
 
 .sales-preview-rule {
@@ -572,7 +567,7 @@ html, body {
   border: 1px solid var(--sales-border);
   border-radius: var(--sales-radius);
   background: var(--sales-surface);
-  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+  transition: border-color var(--sales-dur) var(--sales-ease), box-shadow var(--sales-dur) var(--sales-ease);
 }
 
 .sales-workflow-card:hover {
@@ -1127,4 +1122,19 @@ html, body {
   }
 
   .sales-preview { transform: none; }
+}
+
+
+/* --- StudioOS brand images --- */
+.sales-hero-lockup {
+  display: block;
+  width: min(220px, 42vw);
+  height: auto;
+  margin: 0 0 22px;
+  object-fit: contain;
+}
+
+.sales-footer .sales-brand-mark {
+  background: transparent;
+  box-shadow: none;
 }
