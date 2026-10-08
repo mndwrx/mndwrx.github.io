@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>MNDWRX</title>
-  <meta name="description" content="MNDWRX — Logic + Creativity. Two frequencies. One callsign." />
+  <meta name="description" content="MNDWRX — Logic + Creativity." />
   <meta property="og:title" content="MNDWRX" />
   <meta property="og:description" content="Logic + Creativity = MNDWRX" />
   <meta property="og:image" content="https://mndwrx.github.io/assets/banner.jpg" />
@@ -86,13 +86,6 @@
     h1 .mag { color: var(--magenta); }
     h1 .dim { color: rgba(255,255,255,.38); font-weight: 500; }
 
-    .lede {
-      font-size: 1.05rem;
-      color: var(--muted);
-      max-width: 28ch;
-      margin: 0 0 10px;
-    }
-
     .hinge {
       font-family: "IBM Plex Mono", ui-monospace, monospace;
       font-size: 12px;
@@ -128,18 +121,6 @@
     }
     a.btn.primary:hover { filter: brightness(1.05); }
     a.btn.ghost:hover { border-color: rgba(255,255,255,.4); }
-
-    /* Locked section system */
-    .blocks {
-      margin-top: var(--space-3);
-      display: flex;
-      flex-direction: column;
-      gap: 0;
-    }
-    .block {
-      padding: var(--space-2) 0;
-      border-top: 1px solid var(--line);
-    }
     .block-label {
       font-family: "IBM Plex Mono", ui-monospace, monospace;
       font-size: 11px;
@@ -155,13 +136,6 @@
       line-height: 1.15;
       margin-bottom: 10px;
       max-width: 22ch;
-    }
-    .block-body {
-      font-size: .98rem;
-      color: var(--muted);
-      line-height: 1.5;
-      max-width: 42ch;
-      margin-bottom: var(--space-1);
     }
     .block .row { margin-top: 4px; }
 
@@ -185,28 +159,17 @@
       <h1>
         <span class="lime">Logic</span><span class="dim"> + </span><span class="mag">Creativity</span><span class="dim"> = </span>MNDWRX
       </h1>
-      <p class="lede">Two frequencies. One callsign.</p>
       <p class="hinge">It's just how it works…</p>
-      <div class="blocks">
-
-        <section class="block" aria-label="Signal">
-          <p class="block-label">Signal</p>
-          <h2 class="block-title">Where the feed lives</h2>
-          <p class="block-body">X is the live wire. GitHub is the bench. Everything else waits its turn.</p>
+      <div>
+        <section class="block" aria-label="Links">
+          <p class="block-label">Links</p>
+          <h2 class="block-title">Find us here</h2>
           <div class="row">
             <a class="btn primary" href="https://mndwrx-house.vercel.app/">House site</a>
             <a class="btn ghost" href="https://x.com/MNDWRX">Open X</a>
             <a class="btn ghost" href="https://github.com/mndwrx">Open GitHub</a>
             <a class="btn ghost" href="studio-os/">Studio OS</a>
-          </div>
-        </section>
-
-        <section class="block" aria-label="Contact">
-          <p class="block-label">Contact</p>
-          <h2 class="block-title">Reach the callsign</h2>
-          <p class="block-body">No forms. No funnel. Hit the wire if you’ve got something real.</p>
-          <div class="row">
-            <a class="btn primary" href="https://x.com/MNDWRX">Message @MNDWRX</a>
+            <a class="btn ghost" href="https://x.com/MNDWRX">Message @MNDWRX</a>
           </div>
         </section>
       </div>
